@@ -11,4 +11,6 @@ class ApplicationController < Sinatra::Base
     erb :index
   end
 
+  # define helpers for logged_in and current_user here
+
 end
