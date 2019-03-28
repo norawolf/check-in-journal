@@ -5,7 +5,7 @@ User Can:
     - After sign up, redirects to user dashboard page
   - Log In
     - redirects to user dashboard
-  - Create a new entry
+  - Create a new entry # update date field in table to DateTime!
   - Edit a past entry
   - Delete a past entry
   - See all their own entries

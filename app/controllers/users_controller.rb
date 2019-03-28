@@ -12,7 +12,21 @@ class UsersController < ApplicationController
       # redirect to landing page
     # if not successful
       # redirect to signup page
-      
+    @user = User.new(params)
+
+    if @user.valid?
+      @user.save
+      session[:user_id] = @user.id
+      redirect '/dashboard'
+    else
+      redirect '/signup'
+    end
   end
+
+  get '/dashboard' do
+    
+    erb :'/users/dashboard'
+  end
+
 
 end
