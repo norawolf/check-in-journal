@@ -1,3 +1,19 @@
+Functionality To Build
+
+User Can:
+  - Sign Up
+    - After sign up, redirects to user landing page with option to create new entry
+      or browse past entries
+      or log out
+  - Log In
+    - redirects to user landing page
+
+  - See all entries (users/show.erb)
+
+
+
+
+--------------
  entry[mood][][severity] = "medium"
 
  https://www.w3schools.com/tags/tag_select.asp 
