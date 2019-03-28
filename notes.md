@@ -2,14 +2,37 @@ Functionality To Build
 
 User Can:
   - Sign Up
-    - After sign up, redirects to user landing page with option to create new entry
-      or browse past entries
-      or log out
+    - After sign up, redirects to user dashboard page
   - Log In
-    - redirects to user landing page
+    - redirects to user dashboard
+  - Create a new entry
+  - Edit a past entry
+  - Delete a past entry
+  - See all their own entries
 
-  - See all entries (users/show.erb)
 
+User Cannot:
+  - see other users' entries
+  - modify or delete other users' entries
+
+
+Needed views
+- Dashboard Page - specific to user ID
+  - welcomes user (and "your last entry was on")
+  - option to create new entry
+  - or browse past entries
+  - or log out
+
+- Create entry
+- Edit entry (also with delete button)
+
+Needed Features
+  - session
+  - use ActiveRecord Validations https://guides.rubyonrails.org/active_record_validations.html
+
+Later On:
+- Entry, Moods, and Activities Logic
+- Use Find or Create By as mentioned below
 
 
 
