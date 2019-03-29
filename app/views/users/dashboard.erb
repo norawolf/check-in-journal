@@ -1,1 +1,7 @@
-<h1>Welcome to your dashboard!</h1>
+<h1>Welcome to your dashboard, <%= @current_user.username %>!</h1>
+
+<p>Your last entry was on (Entry.all.last.date)</p>
+
+<a href="/entries/new">Create a new entry</a><br>
+See all entries<br>
+Log Out<br>
