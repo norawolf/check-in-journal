@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   post '/signup' do
     # validate username, email, and password
     # if successful
-      # create and save user
+      # save user
       # log user in by creating session[:user_id]
       # redirect to landing page
     # if not successful
@@ -16,6 +16,7 @@ class UsersController < ApplicationController
 
     if @user.valid?
       @user.save
+      binding.pry
       session[:user_id] = @user.id
       redirect '/dashboard'
     else
@@ -24,7 +25,6 @@ class UsersController < ApplicationController
   end
 
   get '/dashboard' do
-    
     erb :'/users/dashboard'
   end
 
