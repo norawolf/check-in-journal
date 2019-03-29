@@ -16,7 +16,6 @@ class UsersController < ApplicationController
 
     if @user.valid?
       @user.save
-      binding.pry
       session[:user_id] = @user.id
       redirect '/dashboard'
     else
