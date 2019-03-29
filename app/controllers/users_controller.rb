@@ -27,5 +27,10 @@ class UsersController < ApplicationController
     erb :'/users/dashboard'
   end
 
+  get '/logout' do
+    session.clear
+    redirect '/'
+  end
+
 
 end
