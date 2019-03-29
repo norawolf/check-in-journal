@@ -1,8 +1,13 @@
 Functionality To Build
 
+UP NEXT:
+- Build Login functionality
+- Then, seed database with a few activities and moods
+- Build "create a new entry" form
+
 User Can:
-  - Sign Up
-    - After sign up, redirects to user dashboard page
+  - Sign Up -- COMPLETE 3/28
+    - After sign up, redirects to user dashboard page -- COMPLETE 3/28
   - Log In
     - redirects to user dashboard
   - Create a new entry # update date field in table to DateTime!
