@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     # if successful
       # save user
       # log user in by creating session[:user_id]
-      # redirect to landing page
+      # redirect to dashboard page
     # if not successful
       # redirect to signup page
     @user = User.new(params)
@@ -25,6 +25,24 @@ class UsersController < ApplicationController
 
   get '/login' do
     erb :'/users/login'
+  end
+
+  post '/login' do
+    #validate username and password
+    # if successful
+    # log user in by creating session[:user_id]
+    # redirect to dashboard page
+    # else
+    # redirect to /login again
+    @user = User.find_by(username: params[:username])
+
+    if @user.authenticate(params[:password])
+      session[:user_id] = @user.id
+      redirect '/dashboard'
+    else
+      redirect '/login'
+    end
+
   end
 
   get '/dashboard' do
