@@ -1,4 +1,12 @@
 class EntriesController < ApplicationController
+  get '/entries' do
+    if logged_in?
+      @entries = current_user.entries
+      erb :'/entries/entries'
+    else
+      redirect "/login"
+    end
+  end
 
   get '/entries/new' do
     @moods = Mood.all
@@ -19,7 +27,9 @@ class EntriesController < ApplicationController
     end
 
     @entry.save
+
+    redirect "/entries"
   end
 
-  
+
 end
