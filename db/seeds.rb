@@ -1,4 +1,5 @@
 require 'open-uri'
+
 MOODS = "https://www.vocabulary.com/lists/535865"
 
 def get_page(url)
