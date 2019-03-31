@@ -11,7 +11,6 @@ gem 'shotgun'
 gem 'pry'
 gem 'bcrypt'
 gem "tux"
-gem 'nokogiri'
 
 group :test do
   gem 'rspec'

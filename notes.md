@@ -1,23 +1,10 @@
 Functionality To Build
 
-SCRAPING QUESTIONS
-- Where should Scraper class live
-- Can Scraper inherit from ActiveRecord base?
-
-
 UP NEXT:
-- Add scraper for moods to seeds.rb
+- Build Login functionality
 - Then, seed database with a few activities and moods
 - Build "create a new entry" form
 
-
-Reach Goals:
-- Add Sinatra Flash login
-- Add JQuery Chosen gem (can it be used in sinata)? for moods selector list
-  https://harvesthq.github.io/chosen/
-  https://stackoverflow.com/questions/12498399/using-chosen-plugin-with-rails-select
-  https://github.com/ezgraphs/jquery-sinatra-demo/blob/master/views/index.erb
-  https://stackoverflow.com/questions/5811723/how-to-provide-jquery-support-in-sinatra
 User Can:
   - Sign Up -- COMPLETE 3/28
     - After sign up, redirects to user dashboard page -- COMPLETE 3/28
