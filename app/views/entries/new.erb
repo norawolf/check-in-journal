@@ -4,15 +4,26 @@
  <label>Date:</label>
  <input type="date" name="entry[date]"><p>
 
-  <label>How are you feeling?</label><p>
+  How are you feeling?<br>
+  <label>Select a mood from the list:</label><p>
   <select multiple name="entry[moods][]">
     <% @moods.each do |mood| %>
       <option name="<%= mood.name %>"><%= mood.name %></option>
     <% end %>
   </select><p>
 
-  <label>What did you do today?</label><br>
+  and/or, add a different mood<br>
+  <label>I'm feeling</label>:
+  <input type="text" name="entry[moods][]"><p>
 
+
+  <label>What did you do today?</label><br>
+  <% @activities.each do |activity| %>
+    <input type="checkbox" name="entry[activities][]"><%= activity.name %></input>
+  <% end %> <p>
+
+  <label>Add another activity:</label><br>
+  <input type="text" name="entry[activities][]"><p>
 
   <label>Add a note about your day:</label><p>
   <input type="text" name="entry[note]"><p>
