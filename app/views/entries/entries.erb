@@ -1,0 +1,13 @@
+<h2><%= current_user.username %>, choose which entry you would like to view</h2>
+
+
+<% @entries.each do |entry| %>
+  <%= entry.date.strftime('%m-%d-%Y') %> at <%= entry.created_at.strftime('%H:%M') %><br>
+<% end %>
+
+
+<%# TO DO:
+  - update moods table to remove severity
+  - update entry table so that date and time are separate options
+  - update entry form and /post route to parse out date and time so that
+      on this display page it can be Entry Date at Time %>
