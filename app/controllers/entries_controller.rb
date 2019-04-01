@@ -37,11 +37,21 @@ class EntriesController < ApplicationController
 
     @entry = Entry.find(params[:id])
     #ensure that a user can only view their own entries
-    if current_user.entries.include?(@entry.id)
+    if logged_in? && current_user.entries.include?(@entry.id)
       erb :'/entries/show'
     else
       #include a "you do not have access to that entry"
       redirect "/entries"
+    end
+  end
+
+  get '/entries/:id/edit' do
+    
+    @entry = Entry.find(params[:id])
+    if logged_in? && @entry.user_id == current_user.id
+      erb :'/entries/edit'
+    else
+      redirect "/login"
     end
   end
 
