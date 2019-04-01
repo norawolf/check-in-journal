@@ -60,15 +60,23 @@ class EntriesController < ApplicationController
 
   patch '/entries/:id' do
     @entry = Entry.find(params[:id])
-    params[:entry][:moods].each do |mood|
-      @entry.moods << Mood.find_or_create_by(name: mood)
-    end
-    params[:entry][:activities].each do |activity|
-      @entry.activities << Activity.find_or_create_by(name: activity)
-    end
+    @entry.date = params[:entry][:date]
+    @entry.note = params[:entry][:note]
+
+    # params[:entry][:moods].each do |mood|
+    #   if !params["pet"]["name"].empty?
+    #     @entry.moods << Mood.find_or_create_by(name: mood)
+    #   end
+    # end
+
+    # params[:entry][:activities].each do |activity|
+    #   if !@entry.activities.include?(activity)
+    #     @entry.activities << Activity.find_or_create_by(name: activity)
+    #   end
+    # end
     @entry.save
 
-    redirect to "/articles/#{@entry.id}"
+    redirect to "/entries/#{@entry.id}"
   end
 
 end

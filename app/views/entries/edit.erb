@@ -3,9 +3,15 @@
 <form action="/entries/<%= @entry.id %>" method="post">
   <input id="hidden" type="hidden" name="_method" value="patch">
   <label>Date:</label>
-  <input type="date" name="entry[date]" value="<%= @entry.date.strftime('%Y-%m-%d') %>"><p>
+  <input type="date" name="entry[date]" value="<%= @entry.date.strftime('%Y-%m-%d') %>" required><p>
 
-   How are you feeling?<br>
+  <p>Uncheck a mood to remove it from this entry.<br>
+  The moods you selected for this day are:<br>
+  <% @entry.moods.each do |mood| %>
+    <input type="checkbox" name="<%= mood.name %>" <%='checked' if @entry.moods.include?(mood) %>><%= mood.name %></input>
+  <% end %> <br><br>
+
+   Add another mood to this entry by selecting one or multiple moods from the list:<br>
    <label>Select a mood from the list:</label><p>
 
    <select multiple name="entry[moods][]">
@@ -18,17 +24,17 @@
    <label>I'm feeling</label>:
    <input type="text" name="entry[moods][]" value=""><p>
 
-
-   <label>What did you do today?</label><br>
+     You can uncheck an activity to remove it from this entry.<br>
+   <label>The activities you did today are:</label><br>
    <% @activities.each do |activity| %>
      <input type="checkbox" name="entry[activities][]" <%='checked' if @entry.activities.include?(activity) %>> <%= activity.name %></input>
    <% end %> <p>
 
-   <label>Add another activity:</label><br>
+   <label>Add another activity to this entry:</label><br>
    <input type="text" name="entry[activities][]"><p>
 
-   <label>Add a note about your day:</label><p>
-   <input type="text" name="entry[note]"><p>
+   <label>Update your note:</label><p>
+   <input type="text" name="entry[note]" value="<%= @entry.note %>"><p>
 
 
    <input type="submit" value="Update Entry">
