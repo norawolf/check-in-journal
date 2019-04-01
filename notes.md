@@ -1,25 +1,25 @@
-Functionality To Build
-
-SCRAPING QUESTIONS
-- Where should Scraper class live
-- Can Scraper inherit from ActiveRecord base?
-
+CURRENTLY WORKING ON:
+- edit page:
+    - in the select multiple list, how to load page with what the user has already
+      selected highlighted?
+    - all other functionality for edit page
 
 UP NEXT:
-- Build Login functionality
-- Add scraper for moods to seeds.rb
-- Then, seed database with a few activities and moods
-- Build "create a new entry" form
+- Add delete functionality
+- Make sure a user can only access their own content
+- Navigation between pages / option to logout often
+- Layout fun!
 
-
-Reach Goals:
-- Add Sinatra Flash login
+REACH GOALS:
+- Add Sinatra Flash
 - Add JQuery Chosen gem (can it be used in sinata)? for moods selector list
   https://harvesthq.github.io/chosen/
   https://stackoverflow.com/questions/12498399/using-chosen-plugin-with-rails-select
   https://github.com/ezgraphs/jquery-sinatra-demo/blob/master/views/index.erb
   https://stackoverflow.com/questions/5811723/how-to-provide-jquery-support-in-sinatra
-  
+
+
+OUTLINE:
 User Can:
   - Sign Up -- COMPLETE 3/28
     - After sign up, redirects to user dashboard page -- COMPLETE 3/28
@@ -30,11 +30,9 @@ User Can:
   - Delete a past entry
   - See all their own entries
 
-
 User Cannot:
   - see other users' entries
   - modify or delete other users' entries
-
 
 Needed views
 - Dashboard Page - specific to user ID
@@ -43,20 +41,12 @@ Needed views
   - or browse past entries
   - or log out
 
-- Create entry
-- Edit entry (also with delete button)
-
-Needed Features
-  - session
-  - use ActiveRecord Validations https://guides.rubyonrails.org/active_record_validations.html
-
-Later On:
-- Entry, Moods, and Activities Logic
-- Use Find or Create By as mentioned below
 
 
 
 --------------
+notes from 1:1 w Z
+
  entry[mood][][severity] = "medium"
 
  https://www.w3schools.com/tags/tag_select.asp 
