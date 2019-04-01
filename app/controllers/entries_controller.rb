@@ -49,7 +49,7 @@ class EntriesController < ApplicationController
     @entry = Entry.find(params[:id])
     @moods = Mood.all
     @activities = Activity.all
-    
+
     if logged_in? && @entry.user_id == current_user.id
       erb :'/entries/edit'
     else
@@ -58,12 +58,17 @@ class EntriesController < ApplicationController
     end
   end
 
-  # patch '/articles/:id' do
-  #   @article = Article.find_by_id(params[:id])
-  #   @article.title = params[:title]
-  #   @article.content = params[:content]
-  #   @article.save
-  #   redirect to "/articles/#{@article.id}"
-  # end
+  patch '/entries/:id' do
+    @entry = Entry.find(params[:id])
+    params[:entry][:moods].each do |mood|
+      @entry.moods << Mood.find_or_create_by(name: mood)
+    end
+    params[:entry][:activities].each do |activity|
+      @entry.activities << Activity.find_or_create_by(name: activity)
+    end
+    @entry.save
+
+    redirect to "/articles/#{@entry.id}"
+  end
 
 end
