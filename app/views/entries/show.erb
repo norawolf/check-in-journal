@@ -1,0 +1,23 @@
+<h1><%= @entry.date.strftime('%m-%d-%Y') %></h1><br>
+
+<div id="moods">
+  I was feeling:<br>
+  <% @entry.moods.each do |mood| %>
+    <%= mood.name %><br>
+  <% end %>
+</div><p>
+
+<div id="activities">
+  Activities:<br>
+  <% @entry.activities.each do |activity| %>
+    <%= activity.name %><br>
+  <% end %>
+</div><p>
+
+<div id="note">
+Other Details:<br>
+
+<%= @entry.note %><br>
+</div><p>
+
+<a href="/entries/<%= @entry.id%>/edit">Edit this entry</a>
