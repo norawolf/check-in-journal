@@ -47,12 +47,23 @@ class EntriesController < ApplicationController
 
   get '/entries/:id/edit' do
     @entry = Entry.find(params[:id])
+    @moods = Mood.all
+    @activities = Activity.all
+    
     if logged_in? && @entry.user_id == current_user.id
       erb :'/entries/edit'
     else
-      redirect "/login"
+      # error message - "you can only edit your own entries"
+      redirect "/entries"
     end
   end
 
+  # patch '/articles/:id' do
+  #   @article = Article.find_by_id(params[:id])
+  #   @article.title = params[:title]
+  #   @article.content = params[:content]
+  #   @article.save
+  #   redirect to "/articles/#{@article.id}"
+  # end
 
 end
