@@ -31,22 +31,21 @@ class EntriesController < ApplicationController
   get '/entries/:id' do
     #right now, if you manually try to go to an entries/:id that does not
     #exist, it throws and error, so:
-    if !Entry.all.include?(params[:id])
-      redirect "/entries"
-    end
+    # if !Entry.all.include?(params[:id])
+    #   redirect "/entries"
+    # end
 
     @entry = Entry.find(params[:id])
     #ensure that a user can only view their own entries
-    if logged_in? && current_user.entries.include?(@entry.id)
+    if logged_in? && @entry.user_id == current_user.id
       erb :'/entries/show'
     else
-      #include a "you do not have access to that entry"
+    #  include a "you do not have access to that entry"
       redirect "/entries"
     end
   end
 
   get '/entries/:id/edit' do
-    
     @entry = Entry.find(params[:id])
     if logged_in? && @entry.user_id == current_user.id
       erb :'/entries/edit'
