@@ -2,7 +2,7 @@
 
 
 <% @entries.each do |entry| %>
-  <%= entry.date.strftime('%m-%d-%Y') %> at <%= entry.created_at.strftime('%H:%M') %><br>
+  <a href="/entries/<%= entry.id %>"><%= entry.date.strftime('%m-%d-%Y') %></a> at <%= entry.created_at.strftime('%H:%M') %><br>
 <% end %>
 
 
