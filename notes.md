@@ -1,4 +1,7 @@
 CURRENTLY WORKING ON:
+layout:
+  - how to get css to apply to the select multiple box?
+
 - new and edit seem to be working
     - test if they can work without the validations in the models
         VS.

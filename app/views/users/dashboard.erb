@@ -1,7 +1,7 @@
-<h1>Welcome to your dashboard, <%= current_user.username %>!</h1>
+<h1><%= current_user.username.capitalize %>'s Dashboard</h1>
 
-<p>Your last entry was on (Entry.all.last.date)</p>
+<p>Your last entry was on <%= current_user.entries.last.date.strftime('%B %d, %Y')%>.</p>
 
-<a href="/entries/new">Create a new entry</a><br>
-See all entries<br>
-<a href="/logout">Log Out</a><br>
+<a class="button button-primary" href="/entries/new">Create a new entry</a>
+<a class="button button-primary"href="/entries">See all your entries</a>
+<a class="button button-primary" href="/logout">Log Out</a><br>
