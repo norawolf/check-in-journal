@@ -1,6 +1,15 @@
 CURRENTLY WORKING ON:
-- route for creating a new entry broke somehow
-  *currently is not redirecting because activity is still adding an empty string to activities array*
+- new and edit seem to be working
+    - test if they can work without the validations in the models
+        VS.
+    - test to see if they work without the if !mood.empty? etc statement
+https://apidock.com/rails/ActionView/Helpers/FormOptionsHelper/select
+
+or can try the bug fix from the pets/owners complex forms lab
+
+REFACTOR:
+- EXTRACT the new/edit find or create by mood and activity iterations into HELPER METHODS to call!!
+
 - Edit page:
     - add instructions for selecting multiple on mac vs pc
 
