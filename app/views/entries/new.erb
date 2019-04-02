@@ -8,7 +8,7 @@
   <label>Select a mood from the list:</label><p>
   <select multiple name="entry[moods][]">
     <% @moods.each do |mood| %>
-      <option name="<%= mood.name %>"><%= mood.name %></option>
+      <option name="entry[moods][]"><%= mood.name %></option>
     <% end %>
   </select><p>
 
