@@ -9,7 +9,9 @@ class EntriesController < ApplicationController
   end
 
   get '/entries/new' do
-    @moods = Mood.all
+    # is it okay to overwrite Mood.all in the model to add the sort by name instead of repeating
+    # in the edit method?
+    @moods = Mood.all.sort_by(&:name)
     @activities = Activity.all
     erb :'/entries/new'
   end
@@ -47,7 +49,7 @@ class EntriesController < ApplicationController
 
   get '/entries/:id/edit' do
     @entry = Entry.find(params[:id])
-    @moods = Mood.all
+    @moods = Mood.all.sort_by(&:name)
     @activities = Activity.all
 
     if logged_in? && @entry.user_id == current_user.id
@@ -63,22 +65,19 @@ class EntriesController < ApplicationController
     @entry.date = params[:entry][:date]
     @entry.note = params[:entry][:note]
     @entry.moods = []
+    @entry.activities = []
     # only way i've found is to reset @entry.moods, and then repopulate.
     # is there a better way?
     # if a box gets unchecked, it is still in the params array as an empty string
 
-    params[:entry][:moods].each do |mood_name|
-        if !mood_name.empty? && !@entry.moods.any?{|m| m.name == mood_name}
-          @entry.moods << Mood.find_or_create_by(name: mood_name)
-        end
+    params[:entry][:moods].each do |mood|
+      @entry.moods << Mood.find_or_create_by(name: mood)
     end
-    # params[:entry][:activities].each do |activity|
-    #   if !@entry.activities.include?(activity)
-    #     @entry.activities << Activity.find_or_create_by(name: activity)
-    #   end
-    # end
-    @entry.save
+    params[:entry][:activities].each do |activity|
+      @entry.activities << Activity.find_or_create_by(name: activity)
+    end
 
+    @entry.save
     redirect to "/entries/#{@entry.id}"
   end
 
