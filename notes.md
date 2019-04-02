@@ -1,11 +1,10 @@
 CURRENTLY WORKING ON:
-- edit page:
-    - in the select multiple list, how to load page with what the user has already
-      selected highlighted?
-    - all other functionality for edit page
+- route for creating a new entry broke somehow
+  *currently is not redirecting because activity is still adding an empty string to activities array*
+- Edit page:
+    - add instructions for selecting multiple on mac vs pc
 
 UP NEXT:
-- Add delete functionality
 - Make sure a user can only access their own content
 - Navigation between pages / option to logout often
 - Layout fun!
