@@ -62,13 +62,16 @@ class EntriesController < ApplicationController
     @entry = Entry.find(params[:id])
     @entry.date = params[:entry][:date]
     @entry.note = params[:entry][:note]
+    @entry.moods = []
+    # only way i've found is to reset @entry.moods, and then repopulate.
+    # is there a better way?
+    # if a box gets unchecked, it is still in the params array as an empty string
 
-    # params[:entry][:moods].each do |mood|
-    #   if !params["pet"]["name"].empty?
-    #     @entry.moods << Mood.find_or_create_by(name: mood)
-    #   end
-    # end
-
+    params[:entry][:moods].each do |mood_name|
+        if !mood_name.empty? && !@entry.moods.any?{|m| m.name == mood_name}
+          @entry.moods << Mood.find_or_create_by(name: mood_name)
+        end
+    end
     # params[:entry][:activities].each do |activity|
     #   if !@entry.activities.include?(activity)
     #     @entry.activities << Activity.find_or_create_by(name: activity)
@@ -77,6 +80,12 @@ class EntriesController < ApplicationController
     @entry.save
 
     redirect to "/entries/#{@entry.id}"
+  end
+
+  delete '/entries/:id/delete' do #delete action
+    @entry = Entry.find(params[:id])
+    @entry.delete
+    redirect to '/entries'
   end
 
 end
