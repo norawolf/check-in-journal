@@ -1,14 +1,14 @@
 <h1>Create a new entry</h1>
 
-<form method="post" action="/entries">
+<form action="/entries" method="post">
  <label>Date:</label>
  <input type="date" name="entry[date]" required><p>
 
   How are you feeling?<br>
   <label>Select a mood from the list:</label><p>
-  <select multiple>
+  <select name="entry[moods][]" multiple>
     <% @moods.each do |mood| %>
-      <option name="entry[moods][]" value="<%= mood.name%>"><%= mood.name %></option>
+      <option name="entry[moods][]" value="<%= mood.name %>"><%= mood.name %></option>
     <% end %>
   </select><p>
 
@@ -19,7 +19,7 @@
 
   <label>What did you do today?</label><br>
   <% @activities.each do |activity| %>
-    <input type="checkbox" name="entry[activities][]" value="<%= activity.name%>"><%= activity.name %></input>
+    <input type="checkbox" name="entry[activities][]" value="<%= activity.name %>"><%= activity.name %></input>
   <% end %> <p>
 
   <label>Add another activity:</label><br>
