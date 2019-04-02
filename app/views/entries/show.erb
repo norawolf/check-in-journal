@@ -20,4 +20,9 @@ Other Details:<br>
 <%= @entry.note %><br>
 </div><p>
 
-<a href="/entries/<%= @entry.id%>/edit">Edit this entry</a>
+<a href="/entries/<%= @entry.id%>/edit">Edit this entry</a><br>
+<a href="/entries">Back to all entries</a>
+<form action="/entries/<%= @entry.id %>/delete" method="post">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete this entry">
+</form>
