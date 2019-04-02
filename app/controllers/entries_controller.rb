@@ -19,14 +19,21 @@ class EntriesController < ApplicationController
   post '/entries' do
     @entry = Entry.new(date: params[:entry][:date], note: params[:entry][:note],
       user_id: session[:user_id])
+    # mood creation is working.
     params[:entry][:moods].each do |mood|
-      @entry.moods << Mood.find_or_create_by(name: mood)
+      if !mood.empty?
+        @entry.moods << Mood.find_or_create_by(name: mood)
+      end
     end
+
     params[:entry][:activities].each do |activity|
-      @entry.activities << Activity.find_or_create_by(name: activity)
+      if !activity.empty?
+        @entry.activities << Activity.find_or_create_by(name: activity)
+      end
     end
     @entry.save
-
+    binding.pry
+    #currently is not redirecting because activity is still adding an empty string to activities array
     redirect "/entries/#{@entry.id}"
   end
 
@@ -71,17 +78,21 @@ class EntriesController < ApplicationController
     # if a box gets unchecked, it is still in the params array as an empty string
 
     params[:entry][:moods].each do |mood|
-      @entry.moods << Mood.find_or_create_by(name: mood)
+      if !mood.empty?
+        @entry.moods << Mood.find_or_create_by(name: mood)
+      end
     end
     params[:entry][:activities].each do |activity|
-      @entry.activities << Activity.find_or_create_by(name: activity)
+      if !activity.empty?
+        @entry.activities << Activity.find_or_create_by(name: activity)
+      end
     end
 
     @entry.save
     redirect to "/entries/#{@entry.id}"
   end
 
-  delete '/entries/:id/delete' do #delete action
+  delete '/entries/:id/delete' do
     @entry = Entry.find(params[:id])
     @entry.delete
     redirect to '/entries'
