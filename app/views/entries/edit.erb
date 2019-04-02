@@ -14,7 +14,7 @@
    Add another mood to this entry by selecting one or multiple moods from the list:<br>
    <label>Select a mood from the list:</label><p>
 
-   <select multiple>
+   <select name="entry[moods][]" multiple>
      <% @moods.each do |mood| %>
        <option name="entry[moods][]" value="<%= mood.name%>"><%= mood.name %></option>
      <% end %>

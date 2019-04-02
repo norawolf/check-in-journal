@@ -1,13 +1,12 @@
 <h2><%= current_user.username %>, choose which entry you would like to view</h2>
 
+<% if current_user.entries.size == 0 %>
+You haven't created any entries yet.
+<% end %>
 
 <% @entries.each do |entry| %>
   <a href="/entries/<%= entry.id %>"><%= entry.date.strftime('%m-%d-%Y') %></a> at <%= entry.created_at.strftime('%H:%M') %><br>
-<% end %>
+<% end %><br>
 
-
-<%# TO DO:
-  - update moods table to remove severity
-  - update entry table so that date and time are separate options
-  - update entry form and /post route to parse out date and time so that
-      on this display page it can be Entry Date at Time %>
+<a href="/entries/new">Create a new entry</a><br>
+<a href="/logout">Logout</a>

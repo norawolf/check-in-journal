@@ -32,7 +32,6 @@ class EntriesController < ApplicationController
       end
     end
     @entry.save
-    binding.pry
     #currently is not redirecting because activity is still adding an empty string to activities array
     redirect "/entries/#{@entry.id}"
   end
@@ -76,7 +75,7 @@ class EntriesController < ApplicationController
     # only way i've found is to reset @entry.moods, and then repopulate.
     # is there a better way?
     # if a box gets unchecked, it is still in the params array as an empty string
-
+  
     params[:entry][:moods].each do |mood|
       if !mood.empty?
         @entry.moods << Mood.find_or_create_by(name: mood)
