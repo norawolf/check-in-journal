@@ -12,7 +12,7 @@ class EntriesController < ApplicationController
     # is it okay to overwrite Mood.all in the model to add the sort by name instead of repeating
     # in the edit method?
     @moods = Mood.all.sort_by(&:name)
-    @activities = Activity.all
+    @activities = Activity.all.sort_by(&:name)
     erb :'/entries/new'
   end
 
@@ -56,7 +56,7 @@ class EntriesController < ApplicationController
   get '/entries/:id/edit' do
     @entry = Entry.find(params[:id])
     @moods = Mood.all.sort_by(&:name)
-    @activities = Activity.all
+    @activities = Activity.all.sort_by(&:name)
 
     if logged_in? && @entry.user_id == current_user.id
       erb :'/entries/edit'
@@ -75,7 +75,7 @@ class EntriesController < ApplicationController
     # only way i've found is to reset @entry.moods, and then repopulate.
     # is there a better way?
     # if a box gets unchecked, it is still in the params array as an empty string
-  
+
     params[:entry][:moods].each do |mood|
       if !mood.empty?
         @entry.moods << Mood.find_or_create_by(name: mood)
