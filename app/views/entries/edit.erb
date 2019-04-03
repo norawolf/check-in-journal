@@ -1,9 +1,13 @@
+<link rel="stylesheet" href="/stylesheets/normalize.css" />
+<link rel="stylesheet" href="/stylesheets/skeleton.css" />
 <h1>edit this entry</h1>
-
+<div class="row">
+<div class="one-half column">
 <form action="/entries/<%= @entry.id %>" method="post">
   <input id="hidden" type="hidden" name="_method" value="patch">
   <label>Date:</label>
   <input type="date" name="entry[date]" value="<%= @entry.date.strftime('%Y-%m-%d') %>" required><p>
+
 
   <p>Uncheck a mood to remove it from this entry.<br>
   The moods you selected for this day are:<br>
@@ -14,33 +18,43 @@
    Add another mood to this entry by selecting one or multiple moods from the list:<br>
    <label>Select a mood from the list:</label><p>
 
-   <select size="15" multiple name="entry[moods][]" style="height: 150px">
+   <select multiple size="10" name="entry[moods][]" style="height: auto">
      <% @moods.each do |mood| %>
        <option name="entry[moods][]" value="<%= mood.name%>"><%= mood.name %></option>
      <% end %>
    </select><p>
-
+</div>
+<div class="one-half column">
    and/or, add a different mood<br>
-   <label>I'm feeling</label>:
+   <label>I'm feeling:</label>
    <input type="text" name="entry[moods][]"><p>
+
 
      You can uncheck an activity to remove it from this entry.<br>
    <label>The activities you did today are:</label><br>
+   <label class="select-activity">
+     <span class="label-body">
    <% @activities.each do |activity| %>
-     <input type="checkbox" name="entry[activities][]" value="<%= activity.name%>"<%='checked' if @entry.activities.include?(activity) %>> <%= activity.name %></input>
-   <% end %> <p>
+     <input type="checkbox" name="entry[activities][]" value="<%= activity.name%>"<%='checked' if @entry.activities.include?(activity) %>><%= activity.name %></input>
+   <% end %> </span></label><p>
 
    <label>Add another activity to this entry:</label><br>
    <input type="text" name="entry[activities][]"><p>
 
+
    <label>Update your note:</label><p>
    <input type="text" name="entry[note]" value="<%= @entry.note %>"><p>
+   </div>
+   </div>
 
-
-   <input type="submit" value="Update Entry"> or
+<div class="row" align= "center">
+  <div class="twelve columns">
+   <input type="submit" value="Update Entry">
 </form>
 
 <form action="/entries/<%= @entry.id %>/delete" method="post">
   <input id="hidden" type="hidden" name="_method" value="delete">
   <input type="submit" value="Delete this entry">
 </form>
+
+</div>

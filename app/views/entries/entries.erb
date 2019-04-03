@@ -1,12 +1,23 @@
-<h2><%= current_user.username %>, choose which entry you would like to view</h2>
+<h3 style="text-align:center"><%= current_user.username %>, choose which entry you would like to view</h3>
 
-<% if current_user.entries.size == 0 %>
-You haven't created any entries yet.
-<% end %>
+<div class="row" style="padding-bottom: 50px;">
+  <% if current_user.entries.size == 0 %>
+  You haven't created any entries yet.
+  <% end %>
 
-<% @entries.each do |entry| %>
-  <a href="/entries/<%= entry.id %>"><%= entry.date.strftime('%m-%d-%Y') %></a> at <%= entry.created_at.strftime('%H:%M') %><br>
-<% end %><br>
+  <% @entries.each do |entry| %>
+    <a href="/entries/<%= entry.id %>"><%= entry.date.strftime('%m-%d-%Y') %></a> at <%= entry.created_at.strftime('%H:%M') %><br>
+  <% end %><br>
+</div>
 
-<a href="/entries/new">Create a new entry</a><br>
-<a href="/logout">Logout</a>
+<div class="row">
+  <div class="four columns">
+    <a class="button" href="/entries/new">Create a new entry</a>
+  </div>
+  <div class="four columns" style="text-align:center;">
+    <a class="button" href="/dashboard">Back to your dashboard</a>
+  </div>
+  <div class="four columns" style="text-align:right;">
+    <a class="button" href="/logout">Logout</a>
+  </div>
+</div>

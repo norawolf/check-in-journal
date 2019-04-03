@@ -1,7 +1,23 @@
-<h1><%= current_user.username.capitalize %>'s Dashboard</h1>
+<h1>Welcome, <%= current_user.username %></h1>
 
-<p>Your last entry was on <%= current_user.entries.last.date.strftime('%B %d, %Y')%>.</p>
+<div class="row">
+  <div class="u-full-width" style="text-align: center; padding-bottom: 50px;">
+    <% if current_user.entries.count > 0 %>
+      <p>Your last entry was on <%= current_user.entries.last.date.strftime('%B %d, %Y')%>.</p>
+    <% else %>
+      It looks like you haven't created any entries yet.
+      <% end %>
+  </div>
+</div>
 
-<a class="button button-primary" href="/entries/new">Create a new entry</a>
-<a class="button button-primary"href="/entries">See all your entries</a>
-<a class="button button-primary" href="/logout">Log Out</a><br>
+<div class="row">
+  <div class="one-third column">
+    <a class="button button-primary" href="/entries/new">Create a new entry</a>
+  </div>
+  <div class="one-third column" style="text-align:center;">
+    <a class="button button-primary"href="/entries">See all your entries</a>
+  </div>
+  <div class="one-third column" style="text-align:right;">
+    <a class="button button-primary" href="/logout">Log Out</a><br>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+body {
+  background-color: #ffffff;
+}
+
+.container {
+  padding: 50px 0;
+  background-color: #ffffff;
+}
+
+.header{
+  background-color: #33C3F0;
+  color: #ffffff;
+  font-weight: bold;
+  text-transform: lowercase;
+  padding: 10px;
+  font-size: 2.5rem;
+}
+
+h1 {
+  text-align: center;
+}
