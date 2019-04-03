@@ -37,14 +37,17 @@ class EntriesController < ApplicationController
   end
 
   get '/entries/:id' do
-    #right now, if you manually try to go to an entries/:id that does not
-    #exist, it throws and error, so:
-    # if !Entry.all.include?(params[:id])
-    #   redirect "/entries"
-    # end
+    #if you manually try to go to an entries/:id that does not yet exist or has
+    # been deleted from the database, it throws and error, so:
+    if logged_in? && !Entry.all.include?(params[:id])
+      redirect "/entries"
+    else
+      redirect "/login"
+    end
 
     @entry = Entry.find(params[:id])
     #ensure that a user can only view their own entries
+
     if logged_in? && @entry.user_id == current_user.id
       erb :'/entries/show'
     else
@@ -58,7 +61,7 @@ class EntriesController < ApplicationController
     @moods = Mood.all.sort_by(&:name)
     @activities = Activity.all.sort_by(&:name)
 
-    if logged_in? && @entry.user_id == current_user.id
+    if logged_in? && @entry.user_id == current_user.id && @entry.id
       erb :'/entries/edit'
     else
       # error message - "you can only edit your own entries"
