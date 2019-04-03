@@ -1,7 +1,10 @@
 CURRENTLY WORKING ON:
-layout:
-  - how to get css to apply to the select multiple box?
+layout, css, page checks and indentations
+- make edit entry page identical to create new entry page
 
+COMPLETED: index, signup, dashboard, entries all show, create new entry
+
+- HTML validations
 - new and edit seem to be working
     - test if they can work without the validations in the models
         VS.
@@ -20,6 +23,7 @@ UP NEXT:
 - Make sure a user can only access their own content
 - Navigation between pages / option to logout often
 - Layout fun!
+- Add insights: any data summaries? X moods over last 30 days. most done activities, etc?
 
 REACH GOALS:
 - Add Sinatra Flash
