@@ -1,20 +1,24 @@
-<h1><%= @entry.date.strftime('%m-%d-%Y') %></h1><br>
+<h1><%= @entry.date.strftime('%B %d, %Y') %></h1><br>
 
 <div class="row">
-  <div class="six columns">
+  <div class="six columns" style="text-align:center;">
     <h4>I was feeling:</h4>
     <% @entry.moods.each do |mood| %>
       <%= mood.name %><br>
     <% end %>
     <p>
   </div>
-  <div class="six columns">
+  <div class="six columns" style="text-align:center;">
     <h4>Activities:</h4>
     <% @entry.activities.each do |activity| %>
       <%= activity.name %><br>
     <% end %>
     <p>
+  </div>
+</div>
 
+<div class="row">
+  <div class="u-full-width" style="text-align:center;">
     <h4>Notes on my day:</h4>
     <%= @entry.note %><p>
   </div>
@@ -25,12 +29,12 @@
     <a class="button" href="/entries/<%= @entry.id%>/edit">Edit this entry</a>
   </div>
   <div class="one-third column" style="text-align:center;">
-    <a class="button" href="/entries">Back to all entries</a>
-  </div>
-  <div class="one-third column" style="text-align:center;">
     <form action="/entries/<%= @entry.id %>/delete" method="post">
       <input id="hidden" type="hidden" name="_method" value="delete">
       <input type="submit" value="Delete this entry">
     </form>
+  </div>
+  <div class="one-third column" style="text-align:center;">
+    <a class="button" href="/entries">Back to all entries</a>
   </div>
 </div>
