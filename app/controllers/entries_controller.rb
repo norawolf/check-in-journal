@@ -20,6 +20,7 @@ class EntriesController < ApplicationController
     @entry = Entry.new(date: params[:entry][:date], note: params[:entry][:note],
       user_id: session[:user_id])
     # mood creation is working.
+    #DRY - refactor into helper method for moods and activities
     params[:entry][:moods].each do |mood|
       if !mood.empty?
         @entry.moods << Mood.find_or_create_by(name: mood)
@@ -39,6 +40,7 @@ class EntriesController < ApplicationController
   get '/entries/:id' do
     #if you manually try to go to an entries/:id that does not yet exist or has
     # been deleted from the database, it throws and error, so:
+    #DRY - refactor into helper method
     if logged_in? && !Entry.all.include?(params[:id])
       redirect "/entries"
     else
@@ -57,6 +59,13 @@ class EntriesController < ApplicationController
   end
 
   get '/entries/:id/edit' do
+    #DRY - refactor into helper method
+    if logged_in? && !Entry.all.include?(params[:id])
+      redirect "/entries"
+    else
+      redirect "/login"
+    end
+
     @entry = Entry.find(params[:id])
     @moods = Mood.all.sort_by(&:name)
     @activities = Activity.all.sort_by(&:name)
