@@ -15,7 +15,14 @@
     <link rel="stylesheet" href="/stylesheets/skeleton.css" />
     <link rel="stylesheet" href="/stylesheets/style.css" />
     <div class="header">
-      Check-In: A Mental Health Journal
+      <div class="row">
+        <div class="ten columns">
+          Check-In: A Mental Health Journal
+        </div>
+        <div class="two columns" style="text-align:right;">
+          <% if logged_in? %> <a href="/logout" style="color: #FFFFFF; font-size: 1.5rem;">Log Out</a> <% end %>
+        </div>
+      </div>
     </div>
   </head>
 

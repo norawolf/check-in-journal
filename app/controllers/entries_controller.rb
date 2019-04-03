@@ -19,33 +19,17 @@ class EntriesController < ApplicationController
   post '/entries' do
     @entry = Entry.new(date: params[:entry][:date], note: params[:entry][:note],
       user_id: session[:user_id])
-    # mood creation is working.
-    #DRY - refactor into helper method for moods and activities
-    params[:entry][:moods].each do |mood|
-      if !mood.empty?
-        @entry.moods << Mood.find_or_create_by(name: mood)
-      end
-    end
 
-    params[:entry][:activities].each do |activity|
-      if !activity.empty?
-        @entry.activities << Activity.find_or_create_by(name: activity)
-      end
-    end
+    check_collection_for_empty_string_and_create_objects
     @entry.save
-    #currently is not redirecting because activity is still adding an empty string to activities array
+
     redirect "/entries/#{@entry.id}"
   end
 
   get '/entries/:id' do
     #if you manually try to go to an entries/:id that does not yet exist or has
-    # been deleted from the database, it throws and error, so:
+    # been deleted from the database, it throws and error still
     #DRY - refactor into helper method
-    if logged_in? && !Entry.all.include?(params[:id])
-      redirect "/entries"
-    else
-      redirect "/login"
-    end
 
     @entry = Entry.find(params[:id])
     #ensure that a user can only view their own entries
@@ -59,13 +43,6 @@ class EntriesController < ApplicationController
   end
 
   get '/entries/:id/edit' do
-    #DRY - refactor into helper method
-    if logged_in? && !Entry.all.include?(params[:id])
-      redirect "/entries"
-    else
-      redirect "/login"
-    end
-
     @entry = Entry.find(params[:id])
     @moods = Mood.all.sort_by(&:name)
     @activities = Activity.all.sort_by(&:name)
@@ -87,7 +64,20 @@ class EntriesController < ApplicationController
     # only way i've found is to reset @entry.moods, and then repopulate.
     # is there a better way?
     # if a box gets unchecked, it is still in the params array as an empty string
+    check_collection_for_empty_string_and_create_objects
 
+
+    @entry.save
+    redirect to "/entries/#{@entry.id}"
+  end
+
+  delete '/entries/:id/delete' do
+    @entry = Entry.find(params[:id])
+    @entry.delete
+    redirect to '/entries'
+  end
+
+  def check_collection_for_empty_string_and_create_objects
     params[:entry][:moods].each do |mood|
       if !mood.empty?
         @entry.moods << Mood.find_or_create_by(name: mood)
@@ -98,15 +88,6 @@ class EntriesController < ApplicationController
         @entry.activities << Activity.find_or_create_by(name: activity)
       end
     end
-
-    @entry.save
-    redirect to "/entries/#{@entry.id}"
-  end
-
-  delete '/entries/:id/delete' do
-    @entry = Entry.find(params[:id])
-    @entry.delete
-    redirect to '/entries'
   end
 
 end

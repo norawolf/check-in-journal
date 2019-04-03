@@ -1,6 +1,19 @@
 CURRENTLY WORKING ON:
+make edit page match new.erb formatting
+
+STILL NOT WORKING
+- for entries/:id and entries/:id/edit -- working on controlling so a user can't manually
+    enter a entry that doesn't exist or has been deleted to avoid an active record error.
+    need a case for them being logged_in and when they are not logged in
+
+- ADD TIME in 12 hour format to entry show page
 layout, css, page checks and indentations
 - make edit entry page identical to create new entry page
+  - add "cancel edit" to edit entry page
+  - add "nevermind, back to dashboard" to new page
+
+- Add insights to dashboard
+  https://docs.google.com/spreadsheets/d/10fACQt8WISQdE05fCdGxgw2hNDabY0VMoQ8KCccCRAg/edit#gid=0
 
 COMPLETED: index, signup, dashboard, entries all show, create new entry
 
@@ -15,9 +28,6 @@ or can try the bug fix from the pets/owners complex forms lab
 
 REFACTOR:
 - EXTRACT the new/edit find or create by mood and activity iterations into HELPER METHODS to call!!
-
-- Edit page:
-    - add instructions for selecting multiple on mac vs pc
 
 UP NEXT:
 - Make sure a user can only access their own content
