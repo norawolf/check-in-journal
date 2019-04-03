@@ -1,12 +1,3 @@
-body {
-  background-color: #ffffff;
-}
-
-.container {
-  padding: 50px 0;
-  background-color: #ffffff;
-}
-
 .header{
   background-color: #33C3F0;
   color: #ffffff;
@@ -14,6 +5,15 @@ body {
   text-transform: lowercase;
   padding: 10px;
   font-size: 2.5rem;
+}
+
+body {
+  background-color: #ffffff;
+}
+
+.container {
+  padding: 50px 0;
+  background-color: #ffffff;
 }
 
 h1 {
