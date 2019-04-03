@@ -40,10 +40,13 @@ class UsersController < ApplicationController
     # redirect to /login again
     @user = User.find_by(username: params[:username])
 
+    #authenticate is a method added by the Bcrypt has_secure_password method
     if @user.authenticate(params[:password])
+      session.clear
       session[:user_id] = @user.id
       redirect '/dashboard'
     else
+      #error message
       redirect '/login'
     end
 
