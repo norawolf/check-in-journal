@@ -39,8 +39,7 @@ class EntriesController < ApplicationController
     if logged_in? && @entry.user_id == current_user.id && @entry.id
       erb :'/entries/edit'
     else
-      # error message - "you can only edit your own entries"
-      redirect "/entries"
+      halt erb(:error_entries)
     end
   end
 
@@ -50,12 +49,7 @@ class EntriesController < ApplicationController
     @entry.note = params[:entry][:note]
     @entry.moods = []
     @entry.activities = []
-    # only way i've found is to reset @entry.moods, and then repopulate.
-    # is there a better way?
-    # if a box gets unchecked, it is still in the params array as an empty string
     check_collection_for_empty_string_and_create_objects
-
-
     @entry.save
     redirect to "/entries/#{@entry.id}"
   end
