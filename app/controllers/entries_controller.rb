@@ -4,7 +4,7 @@ class EntriesController < ApplicationController
       @entries = current_user.entries
       erb :'/entries/entries'
     else
-      redirect "/login"
+      halt erb(:error_login)
     end
   end
 
@@ -30,16 +30,15 @@ class EntriesController < ApplicationController
     #if you manually try to go to an entries/:id that does not yet exist or has
     # been deleted from the database, it throws and error still
     #DRY - refactor into helper method
+        @entry = Entry.find(params[:id])
+        #ensure that a user can only view their own entries
 
-    @entry = Entry.find(params[:id])
-    #ensure that a user can only view their own entries
-
-    if logged_in? && @entry.user_id == current_user.id
-      erb :'/entries/show'
-    else
-    #  include a "you do not have access to that entry"
-      redirect "/entries"
-    end
+        if logged_in? && @entry.user_id == current_user.id
+          erb :'/entries/show'
+        else
+        #  include a "you do not have access to that entry"
+          redirect "/entries"
+        end
   end
 
   get '/entries/:id/edit' do
