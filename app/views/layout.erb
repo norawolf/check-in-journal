@@ -20,7 +20,7 @@
           Check-In: A Mental Health Journal
         </div>
         <div class="two columns" style="text-align:right;">
-          <% if logged_in? %> <a href="/logout" style="color: #FFFFFF; font-size: 1.5rem;">Log Out</a> <% end %>
+          <% if current_user %> <a href="/logout" style="color: #FFFFFF; font-size: 1.5rem;">Log Out</a> <% end %>
         </div>
       </div>
     </div>

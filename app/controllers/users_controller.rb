@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   end
 
   get '/login' do
-    if logged_in?
+    if current_user
       redirect '/dashboard'
     else
       erb :'/users/login'

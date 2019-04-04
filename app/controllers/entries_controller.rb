@@ -1,6 +1,6 @@
 class EntriesController < ApplicationController
   get '/entries' do
-    if logged_in?
+    if current_user
       @entries = current_user.entries
       erb :'/entries/entries'
     else
@@ -24,7 +24,7 @@ class EntriesController < ApplicationController
 
   get '/entries/:id' do
     @entry = Entry.find(params[:id])
-    if logged_in? && @entry.user_id == current_user.id
+    if current_user && @entry.user_id == current_user.id
       erb :'/entries/show'
     else
       halt erb(:error_entries)
@@ -36,7 +36,7 @@ class EntriesController < ApplicationController
     @moods = Mood.all.sort_by(&:name)
     @activities = Activity.all.sort_by(&:name)
 
-    if logged_in? && @entry.user_id == current_user.id && @entry.id
+    if current_user && @entry.user_id == current_user.id && @entry.id
       erb :'/entries/edit'
     else
       halt erb(:error_entries)
