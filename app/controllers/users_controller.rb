@@ -5,13 +5,6 @@ class UsersController < ApplicationController
   end
 
   post '/signup' do
-    # validate username, email, and password
-    # if successful
-      # save user
-      # log user in by creating session[:user_id]
-      # redirect to dashboard page
-    # if not successful
-      # redirect to signup page
     @user = User.new(params)
 
     if @user.valid?
@@ -19,7 +12,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect '/dashboard'
     else
-      redirect '/signup'
+      halt erb(:error_signup)
     end
   end
 
