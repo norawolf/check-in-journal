@@ -15,16 +15,14 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
-    erb :index
+    if current_user
+      redirect "/dashboard"
+    else
+      erb :index
+    end
   end
 
-  # define helpers for logged_in and current_user here
   def current_user
-    @current_user ||= User.find_by(id: session[:user_id])
+    @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
   end
-
-  def logged_in?
-     !!session[:user_id]
-  end
-  
 end
