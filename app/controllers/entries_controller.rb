@@ -9,8 +9,6 @@ class EntriesController < ApplicationController
   end
 
   get '/entries/new' do
-    # is it okay to overwrite Mood.all in the model to add the sort by name instead of repeating
-    # in the edit method?
     @moods = Mood.all.sort_by(&:name)
     @activities = Activity.all.sort_by(&:name)
     erb :'/entries/new'
@@ -19,26 +17,18 @@ class EntriesController < ApplicationController
   post '/entries' do
     @entry = Entry.new(date: params[:entry][:date], note: params[:entry][:note],
       user_id: session[:user_id])
-
     check_collection_for_empty_string_and_create_objects
     @entry.save
-
     redirect "/entries/#{@entry.id}"
   end
 
   get '/entries/:id' do
-    #if you manually try to go to an entries/:id that does not yet exist or has
-    # been deleted from the database, it throws and error still
-    #DRY - refactor into helper method
-        @entry = Entry.find(params[:id])
-        #ensure that a user can only view their own entries
-
-        if logged_in? && @entry.user_id == current_user.id
-          erb :'/entries/show'
-        else
-        #  include a "you do not have access to that entry"
-          redirect "/entries"
-        end
+    @entry = Entry.find(params[:id])
+    if logged_in? && @entry.user_id == current_user.id
+      erb :'/entries/show'
+    else
+      halt erb(:error_entries)
+    end
   end
 
   get '/entries/:id/edit' do
