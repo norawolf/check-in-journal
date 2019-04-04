@@ -25,24 +25,14 @@ class UsersController < ApplicationController
   end
 
   post '/login' do
-    #validate username and password
-    # if successful
-    # log user in by creating session[:user_id]
-    # redirect to dashboard page
-    # else
-    # redirect to /login again
     @user = User.find_by(username: params[:username])
 
-    #authenticate is a method added by the Bcrypt has_secure_password method
     if @user.authenticate(params[:password])
-      session.clear
       session[:user_id] = @user.id
       redirect '/dashboard'
     else
-      #error message
-      redirect '/login'
+      halt erb(:error_login)
     end
-
   end
 
   get '/dashboard' do

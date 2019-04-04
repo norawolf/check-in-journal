@@ -4,7 +4,7 @@ class EntriesController < ApplicationController
       @entries = current_user.entries
       erb :'/entries/entries'
     else
-      halt erb(:error_login)
+      halt erb(:error_not_logged_in)
     end
   end
 
