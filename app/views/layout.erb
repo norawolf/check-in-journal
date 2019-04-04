@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
 
-    <title>Mental Health Tracker</title>
+    <title>Check-In: A Mental Health Journal</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -16,11 +16,14 @@
     <link rel="stylesheet" href="/stylesheets/style.css" />
     <div class="header">
       <div class="row">
-        <div class="ten columns">
+        <div class="eight columns">
           Check-In: A Mental Health Journal
         </div>
-        <div class="two columns" style="text-align:right;">
-          <% if current_user %> <a href="/logout" style="color: #FFFFFF; font-size: 1.5rem;">Log Out</a> <% end %>
+    
+        <div class="four columns" style="text-align:right;">
+          <a href="/" style="color: #FFFFFF; font-size: 1.5rem;">Home</a>
+          <% if current_user %> <a href="/logout" style="color: #FFFFFF;
+            font-size: 1.5rem;">Log Out</a> <% end %>
         </div>
       </div>
     </div>
