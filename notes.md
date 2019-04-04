@@ -5,7 +5,9 @@ To Refactor:
     - add "cancel edit" to edit entry page
   - Right now Activities shows activities from all users
   - README !!!
+  - add spec from the file
   - ADD TIME in 12 hour format to entry show page
+  - new migration to remove severity from moods table
 
   - HTML validations
   - new and edit seem to be working
@@ -14,6 +16,8 @@ To Refactor:
       - test to see if they work without the if !mood.empty? etc statement
   - Add insights: any data summaries? X moods over last 30 days. most done activities, etc?
 
+  - walk through
+  - blog post
 STILL NOT WORKING
 - for entries/:id and entries/:id/edit -- working on controlling so a user can't manually
     enter a entry that doesn't exist or has been deleted to avoid an active record error.
