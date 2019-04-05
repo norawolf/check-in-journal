@@ -9,9 +9,6 @@ class ApplicationController < Sinatra::Base
 
     enable :sessions
     set :session_secret, "yarrowyarrowyarrow"
-    # this recommended line from sinatra docs wasn't working, did not save added
-    # session variables across routes?
-    # set :session_secret, ENV.fetch('SESSION_SECRET') { SecureRandom.hex(64) }
   end
 
   get "/" do
