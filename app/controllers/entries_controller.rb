@@ -35,11 +35,13 @@ class EntriesController < ApplicationController
   end
 
   get '/entries/:id/edit' do
-    @entry = Entry.find(params[:id])
+    @entry = Entry.find_by_id(params[:id])
     @moods = Mood.all.sort_by(&:name)
     @activities = Activity.all.sort_by(&:name)
 
-    if current_user && @entry.user_id == current_user.id && @entry.id
+    if @entry.nil?
+      redirect "/entries"
+    elsif current_user && @entry.user_id == current_user.id && @entry.id
       erb :'/entries/edit'
     else
       halt erb(:error_entries)
