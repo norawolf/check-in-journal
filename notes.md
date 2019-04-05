@@ -1,13 +1,10 @@
 
-
 To Refactor:
-  - Mood and Activity.all sorts
-    - add "cancel edit" to edit entry page
-  - Right now Activities shows activities from all users
-  - README !!!
-  - add spec from the file
+  - README !!! -- add license
   - ADD TIME in 12 hour format to entry show page
-  - new migration to remove severity from moods table
+  - rename repository
+  - slugs???
+  - front end formatting and hrs
 
   - HTML validations
   - new and edit seem to be working
