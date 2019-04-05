@@ -23,8 +23,11 @@ class EntriesController < ApplicationController
   end
 
   get '/entries/:id' do
-    @entry = Entry.find(params[:id])
-    if current_user && @entry.user_id == current_user.id
+    @entry = Entry.find_by_id(params[:id])
+
+    if @entry.nil?
+      redirect "/entries"
+    elsif current_user && @entry.user_id == current_user.id
       erb :'/entries/show'
     else
       halt erb(:error_entries)
