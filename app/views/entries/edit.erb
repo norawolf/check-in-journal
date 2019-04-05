@@ -5,17 +5,16 @@
   <label>Date:</label>
   <input type="date" name="entry[date]" value="<%= @entry.date.strftime('%Y-%m-%d') %>" required><p>
   <p>
-  The moods you selected for this day are:<br>
-  Uncheck a mood to remove it from this entry.<br>
+  <b>The moods you selected for this day are:</b><br>
+  <i>Uncheck a mood to remove it from this entry.</i><p>
 
   <% @entry.moods.each do |mood| %>
     <input type="checkbox" name="entry[moods][]" value="<%= mood.name%>" <%='checked' if @entry.moods.include?(mood) %>><%= mood.name %></input>
   <% end %> <br><br>
 
-   Add another mood to this entry by selecting one or multiple moods from the list.<br>
-   You can select multiple moods from the list with <code>cmd + click</code>
-     on Mac and <code>ctrl + click</code> on Windows.<br>
-   <label>Select a mood from the list:</label><p>
+   <label>Add another mood to this entry by selecting one or multiple moods from the list.</label>
+   <i>You can select multiple moods from the list with <code>cmd + click</code>
+     on Mac and <code>ctrl + click</code> on Windows.</i><p>
 
    <select multiple size="10" name="entry[moods][]" style="height: auto">
      <% @moods.each do |mood| %>
@@ -27,9 +26,8 @@
    <label>I'm feeling:</label>
    <input type="text" name="entry[moods][]"><p>
 
-
-     You can uncheck an activity to remove it from this entry.<br>
-   <label>The activities you did today are:</label><br>
+   <label>The activities you did today are:</label>
+   <i>You can uncheck an activity to remove it from this entry.</i><p>
    <label class="select-activity">
      <span class="label-body">
    <% @activities.each do |activity| %>
@@ -44,11 +42,14 @@
    <input type="text" name="entry[note]" value="<%= @entry.note %>"><p>
 
 <div class="row">
-  <div class="six columns">
+  <div class="four columns">
    <input type="submit" value="Update Entry">
 </form>
   </div>
-  <div class="six columns">
+  <div class="four columns">
+     <a class="button" href="/dashboard">Cancel Edit</a>
+  </div>
+  <div class="four columns">
     <form action="/entries/<%= @entry.id %>/delete" method="post">
       <input id="hidden" type="hidden" name="_method" value="delete">
       <input type="submit" value="Delete this entry">
