@@ -23,8 +23,7 @@ Built by [Nora Vogt](https://github.com/norawolf)
 
 ## Contributor's Guide
 Collaboration is welcome on this project. By opening a pull request, you agree to
-follow the [Contributor's Covenant](https://www.contributor-covenant.org/version/1/4/code-of-conduct.html)
-Code of Conduct. 
+follow the Contributor Covenant's [Code of Conduct](https://www.contributor-covenant.org/version/1/4/code-of-conduct.html). 
 
 ### License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
