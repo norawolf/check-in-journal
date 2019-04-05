@@ -9,7 +9,6 @@ class ApplicationController < Sinatra::Base
 
     enable :sessions
     set :session_secret, "yarrowyarrowyarrow"
-    register Sinatra::Flash
   end
 
   get "/" do
@@ -20,7 +19,9 @@ class ApplicationController < Sinatra::Base
     end
   end
 
-  def current_user
-    @current_user ||= User.find_by(id: session[:user_id])
+  helpers do
+    def current_user
+      @current_user ||= User.find_by(id: session[:user_id])
+    end
   end
 end
