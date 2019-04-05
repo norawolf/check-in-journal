@@ -13,6 +13,8 @@ gem 'bcrypt'
 gem "tux"
 gem "nokogiri"
 
+gem 'rails-erd', group: :development
+
 group :test do
   gem 'rspec'
   gem 'capybara'
