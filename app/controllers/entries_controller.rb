@@ -9,9 +9,13 @@ class EntriesController < ApplicationController
   end
 
   get '/entries/new' do
-    @moods = Mood.all.sort_by(&:name)
-    @activities = Activity.all.sort_by(&:name)
-    erb :'/entries/new'
+    if current_user
+      @moods = Mood.all.sort_by(&:name)
+      @activities = Activity.all.sort_by(&:name)
+      erb :'/entries/new'
+    else
+      halt erb(:error_not_logged_in)
+    end
   end
 
   post '/entries' do
