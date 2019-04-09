@@ -53,14 +53,16 @@ class EntriesController < ApplicationController
   end
 
   patch '/entries/:id' do
-    @entry = Entry.find(params[:id])
-    @entry.date = params[:entry][:date]
-    @entry.note = params[:entry][:note]
-    @entry.moods = []
-    @entry.activities = []
-    check_collection_for_empty_string_and_create_objects
-    @entry.save
-    redirect to "/entries/#{@entry.id}"
+    entry = Entry.find(params[:id])
+    entry.date = params[:entry][:date]
+    entry.note = params[:entry][:note]
+    entry.moods = []
+    entry.activities = []
+    moods = params[:entry][:moods]
+    activities = params[:entry][:activities]
+    entry.check_collection_for_empty_string_and_create_objects(moods, activities)
+    entry.save
+    redirect to "/entries/#{entry.id}"
   end
 
   delete '/entries/:id' do
