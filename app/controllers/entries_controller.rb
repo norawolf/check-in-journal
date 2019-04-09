@@ -19,19 +19,19 @@ class EntriesController < ApplicationController
   end
 
   post '/entries' do
-    @entry = Entry.new(date: params[:entry][:date], note: params[:entry][:note],
+    moods = params[:entry][:moods]
+    activities = params[:entry][:activities]
+    entry = Entry.new(date: params[:entry][:date], note: params[:entry][:note],
       user_id: session[:user_id])
-    check_collection_for_empty_string_and_create_objects
-    @entry.save
-    redirect "/entries/#{@entry.id}"
+    entry.check_collection_for_empty_string_and_create_objects(moods, activities)
+    entry.save
+    redirect "/entries/#{entry.id}"
   end
 
   get '/entries/:id' do
     @entry = Entry.find_by_id(params[:id])
 
-    if @entry.nil?
-      redirect "/entries"
-    elsif current_user && @entry.user_id == current_user.id
+    if logged_in? && @entry && @entry.user_id == current_user.id
       erb :'/entries/show'
     else
       halt erb(:error_entries)
@@ -65,20 +65,11 @@ class EntriesController < ApplicationController
 
   delete '/entries/:id' do
     @entry = Entry.find(params[:id])
-    @entry.delete
-    redirect to '/entries'
-  end
-
-  def check_collection_for_empty_string_and_create_objects
-    params[:entry][:moods].each do |mood|
-      if !mood.empty?
-        @entry.moods << Mood.find_or_create_by(name: mood)
-      end
-    end
-    params[:entry][:activities].each do |activity|
-      if !activity.empty?
-        @entry.activities << Activity.find_or_create_by(name: activity)
-      end
+    if logged_in? && @entry && @entry.user_id == current_user.id
+      @entry.delete
+      redirect to '/entries'
+    else
+      halt erb(:error_entries)
     end
   end
 
