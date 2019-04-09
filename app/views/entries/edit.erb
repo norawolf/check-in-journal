@@ -58,7 +58,7 @@
      <a class="button" href="/dashboard">Cancel Edit</a>
   </div>
   <div class="four columns">
-    <form action="/entries/<%= @entry.id %>/delete" method="post">
+    <form action="/entries/<%= @entry.id %>" method="post">
       <input id="hidden" type="hidden" name="_method" value="delete">
       <input type="submit" value="Delete this entry">
     </form>

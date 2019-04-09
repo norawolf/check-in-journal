@@ -63,7 +63,7 @@ class EntriesController < ApplicationController
     redirect to "/entries/#{@entry.id}"
   end
 
-  delete '/entries/:id/delete' do
+  delete '/entries/:id' do
     @entry = Entry.find(params[:id])
     @entry.delete
     redirect to '/entries'

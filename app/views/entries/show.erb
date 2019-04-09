@@ -29,7 +29,7 @@
     <a class="button" href="/entries/<%= @entry.id%>/edit">Edit this entry</a>
   </div>
   <div class="one-third column" style="text-align:center;">
-    <form action="/entries/<%= @entry.id %>/delete" method="post">
+    <form action="/entries/<%= @entry.id %>" method="post">
       <input id="hidden" type="hidden" name="_method" value="delete">
       <input type="submit" value="Delete this entry">
     </form>
