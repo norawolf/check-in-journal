@@ -1,5 +1,4 @@
 require './config/environment'
-require 'securerandom'
 
 class ApplicationController < Sinatra::Base
 
