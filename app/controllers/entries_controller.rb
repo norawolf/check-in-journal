@@ -1,6 +1,6 @@
 class EntriesController < ApplicationController
   get '/entries' do
-    if current_user
+    if logged_in?
       @entries = current_user.entries
       erb :'/entries/entries'
     else
@@ -9,7 +9,7 @@ class EntriesController < ApplicationController
   end
 
   get '/entries/new' do
-    if current_user
+    if logged_in?
       @moods = Mood.all.sort_by(&:name)
       @activities = Activity.all.sort_by(&:name)
       erb :'/entries/new'
