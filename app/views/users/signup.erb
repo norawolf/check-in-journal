@@ -1,9 +1,9 @@
 <h1>Create A New Account</h1>
+<div class="error_message" style="color:red;">
 <% if flash[:user_error]%>
-  <div class="error">
     <%= flash[:user_error]%>
-  </div>
 <% end %>
+</div>
 
 <form action="/signup" method="post">
   <label for="username">Username:</label>
