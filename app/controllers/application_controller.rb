@@ -1,8 +1,9 @@
 require './config/environment'
+require 'rack-flash'
 
 class ApplicationController < Sinatra::Base
-
   configure do
+    use Rack::Flash, :sweep => true
     set :public_folder, 'public'
     set :views, 'app/views'
 
@@ -27,4 +28,5 @@ class ApplicationController < Sinatra::Base
       @current_user ||= User.find_by(id: session[:user_id])
     end
   end
+  
 end
