@@ -11,7 +11,8 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect '/dashboard'
     else
-      halt erb(:error_signup)
+      flash[:user_error] = "Your information was not valid. Please try again."
+      redirect '/signup'
     end
   end
 
@@ -26,11 +27,12 @@ class UsersController < ApplicationController
   post '/login' do
     @user = User.find_by(username: params[:username])
 
-    if @user.authenticate(params[:password])
+    if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
       redirect '/dashboard'
     else
-      halt erb(:error_login)
+      flash[:user_error] = "Your information was not valid. Please try again."
+      redirect '/login'
     end
   end
 
