@@ -1,4 +1,9 @@
 <h1>Log in to your account</h1>
+<% if flash[:user_error]%>
+  <div class="error">
+    <%= flash[:user_error]%>
+  </div>
+<% end %>
 
 <form method="post" action="/login">
 <label>Username:</label>
