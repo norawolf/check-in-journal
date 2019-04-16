@@ -14,7 +14,7 @@ To get started, clone this repository.
 
 In your terminal, `cd` into the project directory and run `bundle install` to install gem dependencies.
 
-Then run `rake db:migrate` to load the database.
+Run `rake db:migrate` to load the database and `rake db:seed` to seed the database.
 
 Enter `shotgun` in your terminal to fire up the local server and navigate your browser
 `to localhost:9393`.
