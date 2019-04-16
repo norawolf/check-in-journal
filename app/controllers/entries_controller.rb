@@ -43,9 +43,7 @@ class EntriesController < ApplicationController
     @moods = Mood.all.sort_by(&:name)
     @activities = Activity.all.sort_by(&:name)
 
-    if @entry.nil?
-      redirect "/entries"
-    elsif current_user && @entry.user_id == current_user.id && @entry.id
+    if logged_in? && @entry && @entry.user_id == current_user.id
       erb :'/entries/edit'
     else
       halt erb(:error_entries)
