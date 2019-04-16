@@ -12,6 +12,7 @@ gem 'pry'
 gem 'bcrypt'
 gem "tux"
 gem "nokogiri"
+gem 'rack-flash3'
 
 gem 'rails-erd', group: :development
 
